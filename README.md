@@ -253,7 +253,7 @@ This project is open-source and can be modified based on your project requiremen
 
 ## Author
 
-Developed by S.H.D.H. Kularathna.
+Developed by Deyan Kavindu.
 
 ## Project Goal
 
