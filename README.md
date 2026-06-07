@@ -131,7 +131,7 @@ After activation, you will see a new **Bookings** menu in the WordPress admin da
 Use the plugin shortcode on any page or post:
 
 ```text
-[simple_booking_form]
+[booking_form]
 ```
 
 Then publish or update the page.
