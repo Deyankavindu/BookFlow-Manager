@@ -1,0 +1,653 @@
+/* ============================================================
+   Simple Booking Manager — style.css
+   Covers: Frontend form + WordPress Admin UI
+   ============================================================ */
+
+/* ─── CSS Variables ─────────────────────────────────────── */
+:root {
+	--sbm-primary:       #2563eb;
+	--sbm-primary-dark:  #1d4ed8;
+	--sbm-primary-light: #eff6ff;
+	--sbm-success:       #16a34a;
+	--sbm-success-light: #f0fdf4;
+	--sbm-error:         #dc2626;
+	--sbm-error-light:   #fef2f2;
+	--sbm-warning:       #d97706;
+	--sbm-warning-light: #fffbeb;
+
+	--sbm-grey-50:  #f9fafb;
+	--sbm-grey-100: #f3f4f6;
+	--sbm-grey-200: #e5e7eb;
+	--sbm-grey-300: #d1d5db;
+	--sbm-grey-400: #9ca3af;
+	--sbm-grey-500: #6b7280;
+	--sbm-grey-700: #374151;
+	--sbm-grey-900: #111827;
+
+	--sbm-radius:   10px;
+	--sbm-shadow:   0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+	--sbm-shadow-lg:0 4px 6px rgba(0,0,0,.05), 0 10px 40px rgba(0,0,0,.10);
+}
+
+/* ─── Frontend: Wrapper ─────────────────────────────────── */
+.sbm-form-wrap {
+	max-width: 720px;
+	margin: 2rem auto;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: var(--sbm-shadow-lg);
+	overflow: hidden;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ─── Frontend: Header ──────────────────────────────────── */
+.sbm-form-header {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 2rem 2rem 1.5rem;
+	background: linear-gradient(135deg, var(--sbm-primary) 0%, #1e40af 100%);
+	color: #fff;
+}
+
+.sbm-form-header__icon {
+	width: 56px;
+	height: 56px;
+	background: rgba(255,255,255,.15);
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.sbm-form-header__icon svg {
+	width: 28px;
+	height: 28px;
+	stroke: #fff;
+}
+
+.sbm-form-title {
+	margin: 0 0 .25rem !important;
+	font-size: 1.4rem !important;
+	font-weight: 700 !important;
+	color: #fff !important;
+	line-height: 1.2 !important;
+}
+
+.sbm-form-subtitle {
+	margin: 0 !important;
+	font-size: .875rem;
+	opacity: .85;
+}
+
+/* ─── Frontend: Message ─────────────────────────────────── */
+.sbm-message {
+	margin: 1.25rem 2rem 0;
+	padding: .875rem 1.25rem;
+	border-radius: var(--sbm-radius);
+	font-size: .9rem;
+	font-weight: 500;
+	line-height: 1.5;
+}
+
+.sbm-message--success {
+	background: var(--sbm-success-light);
+	color: var(--sbm-success);
+	border: 1px solid #bbf7d0;
+}
+
+.sbm-message--error {
+	background: var(--sbm-error-light);
+	color: var(--sbm-error);
+	border: 1px solid #fecaca;
+}
+
+/* ─── Frontend: Form ─────────────────────────────────────── */
+#sbm-booking-form {
+	padding: 1.75rem 2rem 2rem;
+}
+
+.sbm-fields-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+	.sbm-fields-grid { grid-template-columns: 1fr; }
+	.sbm-form-wrap { margin: 1rem; border-radius: 12px; }
+	#sbm-booking-form { padding: 1.25rem; }
+	.sbm-form-header { padding: 1.5rem; flex-direction: column; text-align: center; }
+}
+
+.sbm-field { display: flex; flex-direction: column; gap: .4rem; }
+.sbm-field--full { margin-top: .5rem; }
+
+.sbm-label {
+	font-size: .825rem;
+	font-weight: 600;
+	color: var(--sbm-grey-700);
+	letter-spacing: .01em;
+}
+
+.sbm-required { color: var(--sbm-error); margin-left: 2px; }
+
+.sbm-input-wrap {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.sbm-field-icon {
+	position: absolute;
+	left: .875rem;
+	width: 16px;
+	height: 16px;
+	stroke: var(--sbm-grey-400);
+	pointer-events: none;
+	flex-shrink: 0;
+}
+
+.sbm-input {
+	width: 100%;
+	padding: .625rem .875rem .625rem 2.5rem;
+	border: 1.5px solid var(--sbm-grey-200);
+	border-radius: 8px;
+	font-size: .9rem;
+	color: var(--sbm-grey-900);
+	background: var(--sbm-grey-50);
+	transition: border-color .15s, box-shadow .15s, background .15s;
+	box-sizing: border-box;
+}
+
+.sbm-input:focus {
+	outline: none;
+	border-color: var(--sbm-primary);
+	background: #fff;
+	box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+}
+
+.sbm-input::placeholder { color: var(--sbm-grey-400); }
+
+.sbm-select { appearance: none; cursor: pointer; }
+.sbm-select-wrap::after {
+	content: '';
+	position: absolute;
+	right: .875rem;
+	top: 50%;
+	transform: translateY(-50%);
+	border: 4px solid transparent;
+	border-top-color: var(--sbm-grey-400);
+	border-bottom-width: 0;
+	pointer-events: none;
+	margin-top: 2px;
+}
+
+.sbm-textarea { resize: vertical; min-height: 100px; padding-top: .75rem; align-self: flex-start; }
+
+/* ─── Frontend: Footer / Submit ─────────────────────────── */
+.sbm-form-footer {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: .75rem;
+}
+
+.sbm-submit-btn {
+	width: 100%;
+	max-width: 320px;
+	padding: .875rem 1.5rem;
+	background: linear-gradient(135deg, var(--sbm-primary) 0%, #1e40af 100%);
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: opacity .2s, transform .1s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+}
+
+.sbm-submit-btn:hover { opacity: .92; }
+.sbm-submit-btn:active { transform: scale(.98); }
+.sbm-submit-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+.sbm-spinner {
+	width: 18px;
+	height: 18px;
+	animation: sbm-spin .8s linear infinite;
+}
+
+@keyframes sbm-spin { to { transform: rotate(360deg); } }
+
+.sbm-privacy-note {
+	display: flex;
+	align-items: center;
+	gap: .375rem;
+	font-size: .775rem;
+	color: var(--sbm-grey-500);
+	margin: 0;
+}
+
+.sbm-privacy-note svg {
+	width: 13px;
+	height: 13px;
+	stroke: var(--sbm-grey-400);
+	flex-shrink: 0;
+}
+
+/* ─── Flatpickr overrides ───────────────────────────────── */
+.flatpickr-calendar {
+	border-radius: 12px !important;
+	box-shadow: var(--sbm-shadow-lg) !important;
+	font-family: inherit !important;
+}
+
+/* ─── Admin: Wrap ───────────────────────────────────────── */
+.sbm-admin-wrap {
+	max-width: 1200px;
+}
+
+.sbm-admin-wrap h1 .dashicons {
+	font-size: 1.4rem;
+	vertical-align: middle;
+	margin-right: 6px;
+	color: var(--sbm-primary);
+}
+
+/* ─── Admin: Stats Row ──────────────────────────────────── */
+.sbm-admin-stats {
+	display: flex;
+	gap: 1rem;
+	margin: 1.25rem 0;
+}
+
+.sbm-stat {
+	flex: 1;
+	padding: 1rem 1.25rem;
+	border-radius: var(--sbm-radius);
+	display: flex;
+	flex-direction: column;
+	gap: .25rem;
+	background: #fff;
+	border: 1px solid var(--sbm-grey-200);
+	box-shadow: var(--sbm-shadow);
+}
+
+.sbm-stat__number {
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.sbm-stat__label {
+	font-size: .8rem;
+	font-weight: 500;
+	color: var(--sbm-grey-500);
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+
+.sbm-stat--total   .sbm-stat__number { color: var(--sbm-grey-900); }
+.sbm-stat--pending .sbm-stat__number { color: var(--sbm-warning); }
+.sbm-stat--confirmed .sbm-stat__number { color: var(--sbm-success); }
+.sbm-stat--cancelled .sbm-stat__number { color: var(--sbm-error); }
+
+.sbm-stat--total   { border-left: 4px solid var(--sbm-primary); }
+.sbm-stat--pending { border-left: 4px solid var(--sbm-warning); }
+.sbm-stat--confirmed { border-left: 4px solid var(--sbm-success); }
+.sbm-stat--cancelled { border-left: 4px solid var(--sbm-error); }
+
+/* ─── Admin: Filter Form ────────────────────────────────── */
+.sbm-filter-form { margin-bottom: 1rem; }
+.sbm-filter-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: center;
+}
+
+.sbm-filter-input,
+.sbm-filter-select {
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: 1px solid var(--sbm-grey-300);
+	font-size: .875rem;
+}
+
+/* ─── Admin: Table ──────────────────────────────────────── */
+.sbm-table { font-size: .875rem; }
+.sbm-table th { font-weight: 600; }
+
+.sbm-no-results {
+	text-align: center;
+	padding: 3rem !important;
+	color: var(--sbm-grey-500);
+	font-size: 1rem;
+}
+
+.sbm-no-results .dashicons {
+	font-size: 2rem;
+	display: block;
+	margin-bottom: .5rem;
+}
+
+.sbm-table-footer {
+	color: var(--sbm-grey-500);
+	font-size: .8rem;
+	margin-top: .5rem;
+}
+
+/* ─── Admin: Status Badge ───────────────────────────────── */
+.sbm-badge {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 20px;
+	font-size: .75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+
+.sbm-badge--pending   { background: var(--sbm-warning-light);  color: var(--sbm-warning); }
+.sbm-badge--confirmed { background: var(--sbm-success-light); color: var(--sbm-success); }
+.sbm-badge--cancelled { background: var(--sbm-error-light);   color: var(--sbm-error); }
+
+/* ─── Admin: Status Select ──────────────────────────────── */
+.sbm-status-wrap { display: flex; align-items: center; gap: .5rem; }
+.sbm-status-select {
+	font-size: .8rem;
+	padding: 3px 6px;
+	border-radius: 5px;
+	border: 1px solid var(--sbm-grey-300);
+	cursor: pointer;
+}
+
+/* ─── Admin: Actions ────────────────────────────────────── */
+.sbm-actions { white-space: nowrap; }
+.sbm-actions .button { margin-right: 4px; }
+.sbm-actions .dashicons { font-size: 15px; vertical-align: middle; }
+.sbm-delete-btn { color: var(--sbm-error) !important; }
+
+/* ─── Admin: Export button ──────────────────────────────── */
+.sbm-btn-export .dashicons { font-size: 14px; vertical-align: middle; margin-right: 2px; }
+
+/* ─── Admin: Detail Card ─────────────────────────────────── */
+.sbm-detail-card {
+	background: #fff;
+	border: 1px solid var(--sbm-grey-200);
+	border-radius: var(--sbm-radius);
+	box-shadow: var(--sbm-shadow);
+	margin-top: 1.25rem;
+	overflow: hidden;
+}
+
+.sbm-detail-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 1.5rem;
+	background: var(--sbm-grey-50);
+	border-bottom: 1px solid var(--sbm-grey-200);
+}
+
+.sbm-detail-header h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
+.sbm-detail-header p  { margin: 0; color: var(--sbm-grey-500); }
+
+.sbm-detail-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0;
+}
+
+.sbm-detail-item {
+	display: flex;
+	align-items: flex-start;
+	gap: .75rem;
+	padding: 1.25rem 1.5rem;
+	border-right: 1px solid var(--sbm-grey-100);
+	border-bottom: 1px solid var(--sbm-grey-100);
+}
+
+.sbm-detail-item .dashicons {
+	font-size: 18px;
+	color: var(--sbm-primary);
+	margin-top: 2px;
+	flex-shrink: 0;
+}
+
+.sbm-detail-item label {
+	display: block;
+	font-size: .75rem;
+	font-weight: 600;
+	color: var(--sbm-grey-500);
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	margin-bottom: .2rem;
+}
+
+.sbm-detail-item p { margin: 0; font-size: .9rem; color: var(--sbm-grey-900); }
+
+.sbm-detail-notes {
+	padding: 1.25rem 1.5rem;
+	border-top: 1px solid var(--sbm-grey-100);
+}
+
+.sbm-detail-notes label {
+	display: flex;
+	align-items: center;
+	gap: .375rem;
+	font-size: .75rem;
+	font-weight: 600;
+	color: var(--sbm-grey-500);
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	margin-bottom: .5rem;
+}
+
+.sbm-detail-notes p {
+	margin: 0;
+	font-size: .9rem;
+	color: var(--sbm-grey-700);
+	line-height: 1.6;
+}
+
+/* ─── Admin: Edit Form ──────────────────────────────────── */
+.sbm-edit-form {
+	background: #fff;
+	border: 1px solid var(--sbm-grey-200);
+	border-radius: var(--sbm-radius);
+	padding: 2rem;
+	margin-top: 1.25rem;
+	box-shadow: var(--sbm-shadow);
+}
+
+.sbm-form-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.25rem;
+}
+
+.sbm-form-field { display: flex; flex-direction: column; gap: .4rem; }
+.sbm-form-field--full { grid-column: 1 / -1; }
+.sbm-form-field label { font-weight: 600; font-size: .875rem; }
+.sbm-form-field .required { color: var(--sbm-error); }
+.sbm-form-field input,
+.sbm-form-field select,
+.sbm-form-field textarea { border-radius: 6px; }
+
+.sbm-form-actions {
+	margin-top: 1.5rem;
+	display: flex;
+	gap: .75rem;
+	align-items: center;
+}
+
+.sbm-form-actions .dashicons { font-size: 14px; vertical-align: middle; margin-right: 3px; }
+
+/* Premium upgrade additions */
+.sbm-admin-two-col {
+	display: grid;
+	grid-template-columns: minmax(320px, 1fr) minmax(320px, 1.2fr);
+	gap: 22px;
+	align-items: start;
+	margin-top: 20px;
+}
+.sbm-admin-card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 14px;
+	padding: 20px;
+	box-shadow: 0 8px 24px rgba(0,0,0,.04);
+}
+.sbm-admin-card h2 { margin-top: 0; }
+.sbm-template-box {
+	border: 1px solid #dcdcde;
+	border-radius: 10px;
+	padding: 14px;
+	margin: 0 0 14px;
+	background: #fafafa;
+}
+.sbm-template-box h3 { margin: 0 0 10px; }
+.sbm-template-box input { margin-bottom: 8px; }
+.sbm-custom-fields { margin-top: 18px; }
+.sbm-choice-group { display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 10px 0; }
+.sbm-choice { display: inline-flex; gap: 8px; align-items: center; font-weight: 500; }
+.sbm-custom-meta-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px 20px;
+}
+.sbm-custom-meta-grid p {
+	margin: 0;
+	padding: 12px;
+	background: #f8fafc;
+	border-radius: 10px;
+}
+.sbm-analytics-row {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #eee;
+	padding: 8px 0;
+}
+@media (max-width: 782px) {
+	.sbm-admin-two-col { grid-template-columns: 1fr; }
+}
+
+
+/* Dashboard booking form preview */
+.sbm-dashboard-form-preview-card {
+	margin-top: 24px;
+}
+.sbm-preview-card-header {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+	align-items: flex-start;
+	margin-bottom: 18px;
+}
+.sbm-preview-card-header p {
+	margin: 6px 0 0;
+	color: #646970;
+	max-width: 760px;
+}
+.sbm-dashboard-form-preview {
+	background: #f6f7f7;
+	border: 1px dashed #c3c4c7;
+	border-radius: 16px;
+	padding: 22px;
+	overflow: hidden;
+}
+.sbm-dashboard-form-preview .sbm-form-wrap {
+	max-width: 980px;
+	margin: 0 auto;
+}
+.sbm-dashboard-form-preview #sbm-submit-btn-preview {
+	cursor: not-allowed;
+	opacity: .75;
+}
+.sbm-dashboard-form-preview::before {
+	content: 'Admin Preview';
+	display: inline-flex;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	padding: 6px 10px;
+	border-radius: 999px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	color: #50575e;
+	margin-bottom: 14px;
+}
+@media (max-width: 782px) {
+	.sbm-preview-card-header { flex-direction: column; }
+	.sbm-dashboard-form-preview { padding: 14px; }
+}
+
+/* Custom field editor improvements */
+.sbm-field-editor-card,
+.sbm-saved-fields-card {
+    position: relative;
+}
+.sbm-field-editor-header,
+.sbm-saved-fields-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+}
+.sbm-field-editor-header h2,
+.sbm-saved-fields-header h2 {
+    margin-bottom: 4px;
+}
+.sbm-field-editor-header p,
+.sbm-saved-fields-header p {
+    margin: 0;
+    color: #646970;
+}
+.sbm-editing-pill {
+    display: inline-flex;
+    align-items: center;
+    max-width: 220px;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: #e7f6f3;
+    color: #007c6d;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sbm-inline-edit-notice {
+    margin: 0 0 14px !important;
+}
+.sbm-field-editor-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 10px;
+}
+.sbm-fields-table .sbm-row-editing td {
+    background: #f0f9f7;
+    box-shadow: inset 3px 0 0 #00a58f;
+}
+.sbm-fields-table td:last-child {
+    white-space: nowrap;
+}
+@media (max-width: 782px) {
+    .sbm-field-editor-header,
+    .sbm-saved-fields-header {
+        flex-direction: column;
+    }
+    .sbm-fields-table td:last-child {
+        white-space: normal;
+    }
+}
